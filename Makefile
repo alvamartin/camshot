@@ -1,6 +1,6 @@
-include theos/makefiles/common.mk
+include /opt/theos/makefiles/common.mk
 
-TOOL_NAME = camshot
-camshot_FILES = main.mm capture.m
-camshot_FRAMEWORKS = AVFoundation
+TOOL_NAME = camshotS
+camshotS_FILES = main.mm capture.m
+camshotS_FRAMEWORKS = AVFoundation
 include $(THEOS_MAKE_PATH)/tool.mk

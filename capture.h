@@ -10,8 +10,7 @@
 - (AVCaptureDevice *)frontFacingCameraIfAvailable;
 - (AVCaptureDevice *)backFacingCameraIfAvailable;
 
-- (void)setupCaptureSession:(BOOL)isfront;
+- (void)setupCaptureSession:(BOOL)isfront withResolution:(char*)sessionPreset;
 - (void)captureWithBlock:(void(^)(UIImage* block))block;
 - (void)setfilename:(NSString *)filename;
 @end
-

@@ -28,17 +28,30 @@
     return captureDevice;
 }
 
-- (void)setupCaptureSession:(BOOL)isfront{
+/*
+Jan 19th 2017 - meremention
+method modified to take the resolution of the picture as an argument
+*/
+- (void)setupCaptureSession:(BOOL)isfront withResolution:(char*)sessionPreset {
     self.session = [[AVCaptureSession alloc] init];
-    self.session.sessionPreset = AVCaptureSessionPresetMedium;
-    
+    NSString *sP=AVCaptureSessionPresetMedium;
+    if (!strcmp(sessionPreset, "480")) {
+      sP = AVCaptureSessionPreset640x480;
+    } else if (!strcmp(sessionPreset, "720")) {
+      sP = AVCaptureSessionPreset1280x720;
+    } else if (!strcmp(sessionPreset, "1080")) {
+      sP = AVCaptureSessionPreset1920x1080;
+    }
+
+    self.session.sessionPreset = sP;
+
     AVCaptureDevice *device = nil;
     NSError *error = nil;
     if (isfront)
         device = [self frontFacingCameraIfAvailable];
     else
         device = [self backFacingCameraIfAvailable];
-    
+
     AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
     if (!input) {
         // Handle the error appropriately.
@@ -52,7 +65,7 @@
     [outputSettings release];
     [self.session addOutput:self.stillImageOutput];
     [self.session startRunning];
-    
+
 }
 - (void)captureWithBlock:(void(^)(UIImage* image))block
 {
@@ -70,7 +83,7 @@
         if (videoConnection)
             break;
     }
-    
+
     [self.stillImageOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler: ^(CMSampleBufferRef imageSampleBuffer, NSError *error)
      {
          NSData* imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];

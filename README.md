@@ -1,8 +1,10 @@
 # camshotS
 Created by neoneggplant
-Modified to accept an extra parameter for choosing the resolution of the pic.
 
-Take photos on iOS from the command line
+*Modified by meremention to shoot in different resolutions.*
 
-Usage: camshot [-front|-back] [480|720|1080] [output]
-Example: camshot -front 720 image.jpg
+Takes photos on iOS from the command line.
+
+Usage: camshotS [-front|-back] [480|720|1080] [output]
+
+Example: camshotS -front 720 image.jpg

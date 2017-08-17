@@ -1,9 +1,8 @@
 # camshotS
-Created by neoneggplant
 
-*Modified by meremention to shoot in different resolutions.*
+Fork of camshot by neoneggplant
 
-Takes photos on iOS from the command line.
+Takes photos on iOS from the command line using different resolutions
 
 Usage: camshotS [-front|-back] [480|720|1080] [output]
 
